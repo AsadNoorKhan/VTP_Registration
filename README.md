@@ -67,7 +67,11 @@ app/
    - Wait for Gradle sync to complete
    - Resolve any dependency issues if they arise
 
-4. **Run the app**
+4. **Configure the app**
+   - Copy `app/src/main/assets/config.properties.template` to `app/src/main/assets/config.properties`
+   - Update the configuration values with your actual API endpoints and settings
+
+5. **Run the app**
    - Connect an Android device or start an emulator
    - Click the "Run" button or press Shift+F10
 
@@ -107,6 +111,37 @@ The app integrates with a REST API for user management:
 - **Endpoints**: User status, registration, and authentication
 - **Authentication**: Token-based authentication
 - **Error Handling**: Comprehensive error handling and user feedback
+
+## ⚙️ Configuration Management
+
+The app uses a centralized configuration system for secure management of sensitive data:
+
+### **Configuration Files**
+- `app/src/main/assets/config.properties` - Contains actual configuration values (not tracked in Git)
+- `app/src/main/assets/config.properties.template` - Template file for developers to copy and customize
+
+### **Configuration Object**
+- `Config.kt` - Singleton object that reads configuration values and provides them throughout the app
+- Supports fallback to default values if configuration file is missing
+- Automatically initialized in MainActivity
+
+### **Security Features**
+- Configuration file is excluded from Git tracking via `.gitignore`
+- API URLs and endpoints are stored as configurable variables
+- Easy to update configuration without code changes
+- Supports different environments (dev, staging, production)
+
+### **Usage Example**
+```kotlin
+// Get API base URL
+val baseUrl = Config.apiBaseUrl
+
+// Get full API URL with endpoint
+val fullUrl = Config.getFullApiUrl(Config.endpointUserStatus)
+
+// Get network timeout
+val timeout = Config.networkTimeout
+```
 
 ## 🔐 Permissions
 
