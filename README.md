@@ -131,6 +131,11 @@ The app uses a centralized configuration system for secure management of sensiti
 - Easy to update configuration without code changes
 - Supports different environments (dev, staging, production)
 
+### **Important Notes**
+- **Retrofit Annotations**: Endpoints in API interfaces must be compile-time constants
+- **Base URL**: Can be configured via `config.properties` and accessed through `Config.apiBaseUrl`
+- **Endpoints**: Are defined as constants in `ApiConfig` for Retrofit compatibility
+
 ### **Usage Example**
 ```kotlin
 // Get API base URL
@@ -141,6 +146,9 @@ val fullUrl = Config.getFullApiUrl(Config.endpointUserStatus)
 
 // Get network timeout
 val timeout = Config.networkTimeout
+
+// Note: Retrofit annotations require compile-time constants,
+// so endpoints are defined as constants in ApiConfig
 ```
 
 ## 🔐 Permissions

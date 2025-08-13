@@ -13,7 +13,7 @@ object Config {
     private var properties: Properties? = null
     
     // API Configuration
-    const val DEFAULT_API_BASE_URL = "https://api.valsgroup.com"
+    const val DEFAULT_API_BASE_URL = "http://avl.valstracking.com:8080"
     const val DEFAULT_API_VERSION = "v1"
     const val DEFAULT_API_TIMEOUT = 30000L
     

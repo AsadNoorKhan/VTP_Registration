@@ -12,7 +12,7 @@ import retrofit2.http.Path
 interface ApiService {
     
     // Route 1: IMEI Registration
-    @POST(com.valsgroup.registration.config.Config.endpointUserRegister)
+    @POST("/vtp/imeireg")
     suspend fun registerImei(
         @Header("Authorization") authorization: String,
         @Query("imei_id") imeiId: Long,
@@ -22,7 +22,7 @@ interface ApiService {
     ): Response<ApiResponse>
     
     // Route 2: User Status
-    @GET(com.valsgroup.registration.config.Config.endpointUserStatus + "/{userId}")
+    @GET("/vtp/userstatus/{userId}")
     suspend fun getUserStatus(
         @Header("Authorization") authorization: String,
         @Path("userId") userId: String
@@ -33,6 +33,10 @@ interface ApiService {
 object ApiConfig {
     val BASE_URL: String get() = com.valsgroup.registration.config.Config.apiBaseUrl
     val BEARER_TOKEN: String get() = "Bearer vtpliveviewvwep" // Bearer token with proper format
+    
+    // API Endpoints - using constants for Retrofit annotations
+    const val ENDPOINT_USER_REGISTER = "/vtp/imeireg"
+    const val ENDPOINT_USER_STATUS = "/vtp/userstatus"
 }
 
     // Response data classes
